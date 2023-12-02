@@ -4,33 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    <script src="./app.js"></script>
+   
     <title>Black Jack</title>
 </head>
 <body>
    <div class="container">
-     <h2>Dealer: 
+     <div class="dealer-section">
+        <h2>Dealer: 
     <span id="dealer-sum"></span></h2>
 
     <div id="dealer-cards" class="cards"    >
         <img id="hidden"src="./cards/BACK.png" alt="">
        
     </div>
+    <div class="dealerBet none"><h4>Dealer Amount: $500</h4></div>
+     </div>
 
-    <h2>You: 
+   <div class="player-section"> <h2>You: 
     <span id="player-sum"></span></h2>
 
     <div id="player-cards" class="cards">
          <img src="./cards/BACK.png" alt="">
     </div>
-
+    <div class="playerBet none"> <h4>Player Amount: $500</h4>
+     <h4>Bet Amount: <input type="number" name="" id=""></h4></div>
+</div>
     <br>
-    <button id="start">Start</button>
-    <button  id="play">Play</button>
-    <button id="check">Check</button>
+    <div class="btnContainer">
+        <button id="start">Start</button>
+        <button id="restart" class="none">Restart</button>
+    <button  id="open">Open</button>
+    <button id="check">Check</button></div>
 
     <p id="result"></p>
 
    </div>
+
+   <div class="mode-box none">
+    <h4>Want to Bet in Game?</h4>
+    <div class="modes">
+        <button class="yes">Yes</button>
+        <button class="no">No</button>
+    </div>
+   </div>
+   <div class=" modalBack"></div>
+    <script src="./app.js"></script>
 </body>
 </html>

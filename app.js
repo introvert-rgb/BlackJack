@@ -1,18 +1,79 @@
 
 var dealerSum=0;
 var playerSum=0;
-
+var dealerAmount=500;
+var playerAmount=500
 var dealerAceCount=0;
 var playerAceCount= 0;
-
+var betAmount;
 var hidden; 
 var deck;
+let dealerCardLength = 0;
 
 var canPlay=true;
-window.onload= function(){
+
+
+document.getElementById('start').addEventListener('click',initialiseGame)
+
+
+
+function initialiseGame(){
+   
+    selectMode();
+      
+    
+}
+
+document.querySelector('#restart').addEventListener('click',restartBtn)
+function restartBtn(){
+   
+    // let addedCards=document.querySelectorAll('.addedCard').length;
+
+    //  for(let i=0;i<addedCards;i++){
+    //     document.querySelector('.addedCard').remove();
+        
+    //  }
+    
+     
+    location.reload()
+
+     document.querySelector("#start").removeAttribute("class", "none");
+     document.querySelector("#restart").classList.add('none')
+
+}
+
+
+function selectMode(){
+      document.querySelector(".mode-box").classList.remove("none");
+    if(document.querySelector('.modalBack').classList.contains('screen'))
+    document.querySelector(".modalBack").classList.remove("screen");
+else
+document.querySelector(".modalBack").classList.add('screen');
+
+document.querySelector('.yes').addEventListener('click',function(){
+     document.querySelector(".modalBack").classList.remove("screen");
+     document.querySelector(".mode-box").classList.add("none");
+     document.querySelector(".playerBet").classList.remove("none");
+     document.querySelector(".dealerBet").classList.remove("none");
+     buildDeck();
+     shuffleDeck();
+     playGame();
+})
+
+    document.querySelector(".no").addEventListener("click", function () {
+    document.querySelector(".modalBack").classList.remove("screen");
+    document.querySelector(".mode-box").classList.add("none");
+
+  
+    document.querySelector('#start').setAttribute('class','none');
+    document.querySelector("#restart").removeAttribute("class", "none");
     buildDeck();
     shuffleDeck();
-    startGame();
+    playGame();
+});
+
+ 
+
 }
 
 function buildDeck(){
@@ -39,7 +100,7 @@ function shuffleDeck(){
 }
 
 
-function startGame(){
+function playGame(){
     
     hidden=deck.pop();
     dealerSum+=getValue(hidden);
@@ -49,24 +110,29 @@ function startGame(){
     console.log(dealerSum)
 
     while(dealerSum<17){
+    
         let cardImg=document.createElement("img");
         let card=deck.pop();
         cardImg.src=`./cards/${card}.png`;
+        cardImg.className='addedCard';
         dealerSum+=getValue(card);
         dealerAceCount+=checkAce(card);
-        document.getElementById("dealer-cards").append(cardImg)
-    }
+        document.getElementById("dealer-cards").append(cardImg);
+    
+    
+            }
 
     for(let i=0; i<2; i++){
         let cardImg = document.createElement("img");
         let card = deck.pop();
         cardImg.src = `./cards/${card}.png`;
         playerSum += getValue(card);
+        cardImg.className = "addedCard";
         playerAceCount  += checkAce(card);
         document.getElementById("player-cards").append(cardImg);
     }
 
-    document.getElementById('play').addEventListener('click',play)
+    document.getElementById('open').addEventListener('click',play)
     
     document.getElementById("check").addEventListener("click", check);
 }
@@ -80,6 +146,7 @@ function play(){
     let cardImg = document.createElement("img");
     let card = deck.pop();
     cardImg.src = `./cards/${card}.png`;
+    cardImg.className = "addedCard";
     playerSum += getValue(card);
     playerAceCount += checkAce(card);
     document.getElementById("player-cards").append(cardImg);
