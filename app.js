@@ -45,8 +45,8 @@ function startGame(){
     dealerSum+=getValue(hidden);
     dealerAceCount+=checkAce(hidden);
 
-    // console.log(hidden)
-    // console.log(dealerSum)
+    console.log(hidden)
+    console.log(dealerSum)
 
     while(dealerSum<17){
         let cardImg=document.createElement("img");
